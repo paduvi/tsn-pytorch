@@ -44,7 +44,8 @@ class MobileNet(nn.Module):
         )
         self.fc = nn.Linear(1024, 1000)
 
-        checkpoint = torch.load(weight_path)
+        # checkpoint = torch.load(weight_path, map_location=lambda storage, loc: storage)  # CPU
+        checkpoint = torch.load(weight_path)  # GPU
 
         state_dict = OrderedDict()
         prefix = 'module.'
